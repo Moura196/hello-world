@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Flash Card App</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-text='deckName'></h1>
+
+        <div class="card">
+            <h2 v-text="flipped ? '' : cards[0].front"></h2>
+            <div v-html="flipped ? cards[0].back : ''"></div>
+        </div>
+
+        <a :href="readMoreUrl"> read more </a>
+    </div>
+
+    <script src="data.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3.0.7/dist/vue.global.js"></script> 
+        changed this one the bellow one. If anyhting goes wrong I will change this-->
+    <script src='https://unpkg.com/vue@3.4.27/dist/vue.global.js'></script>
+    <script>
+        // Not the appp it self. It is a object that describes it by representing some options that will pass to a method to create the app.
+        // An example of an option it is the data that our app will work with. So we create a function called data
+        const FlashCardApp = {
+            data() {
+                return {
+                    deckName: 'Vue.js Fundamentals', // that is the object the function is returning
+                    cards,
+                    flipped: false,
+                    readMoreUrl: 'https://vuejs.org/guide/introduction.html'
+                };
+            }
+        };
+
+        const app = Vue.createApp(FlashCardApp).mount('#app'); //instead of writing code that says select this "h1" element and set the inner text, we just
+        // declare that the inner text of thi element will have the value of our deck name data property
+    </script>
+</body>
+
+</html>
